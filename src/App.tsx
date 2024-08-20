@@ -1,7 +1,8 @@
 import { InterchangeLanguageIcon } from "./components/Icons";
 import { LanguageSelector } from "./components/LanguageSelector";
-import { AUTO_LANGUAGE } from "./contants/contants";
+import { AUTO_LANGUAGE } from "./constants/constants";
 import { useGoogleTranslate } from "./hooks/useGoogleTranslate";
+import { SectionType } from "./types";
 
 export default function App() {
   const {
@@ -16,11 +17,14 @@ export default function App() {
     <main className="max-w-[450px] mx-auto grid place-items-center grid-cols-3 h-screen gap-10">
       <div className="space-y-5">
         <LanguageSelector
-          type="from"
+          type={SectionType.From}
           value={fromLanguage}
           onChange={setFromLanguage} 
         />
-        <h2 className="text-center text-2xl font-bold">From {fromLanguage}</h2>
+        <textarea
+          placeholder="Introducir texto"
+          className="p-5 rounded-lg h-56 w-full border-2"
+        ></textarea>
       </div>
       <div>
         <button
@@ -34,11 +38,14 @@ export default function App() {
       </div>
       <div className="space-y-5">
         <LanguageSelector
-          type="to"
+          type={SectionType.To}
           value={toLanguage}
           onChange={setToLanguage} 
         />
-        <h2 className="text-center text-2xl font-bold">To {toLanguage}</h2>
+        <textarea
+          placeholder="Traducción"
+          className="p-5 rounded-lg h-56 w-full border-2"
+        ></textarea>
       </div>
     </main>
   )

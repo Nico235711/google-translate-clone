@@ -1,4 +1,4 @@
-import { AUTO_LANGUAGE, SUPPORTE_LANGUAGES } from "../contants/contants"
+import { AUTO_LANGUAGE, SUPPORTE_LANGUAGES } from "../constants/constants"
 
 export type Language = keyof typeof SUPPORTE_LANGUAGES
 export type AutoLanguage = typeof AUTO_LANGUAGE
@@ -17,4 +17,9 @@ export type GoogleTranslateState = {
   fromText: string
   result: string
   loading: boolean
+}
+
+export enum SectionType {
+  From = "from",
+  To = "to"
 }

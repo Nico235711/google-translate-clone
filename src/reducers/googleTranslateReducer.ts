@@ -1,4 +1,4 @@
-import { AUTO_LANGUAGE } from "../contants/contants"
+import { AUTO_LANGUAGE } from "../constants/constants"
 import { GoogleTranslateActions, GoogleTranslateState } from "../types"
 
 export const initialState: GoogleTranslateState = {

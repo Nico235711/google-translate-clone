@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { InterchangeLanguageIcon } from "./components/Icons";
+import { LanguageSelector } from "./components/LanguageSelector";
+import { AUTO_LANGUAGE } from "./contants/contants";
+import { useGoogleTranslate } from "./hooks/useGoogleTranslate";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const {
+    setFromLanguage,
+    setToLanguage,
+    toLanguage,
+    fromLanguage,
+    interChangeLanguages 
+  } = useGoogleTranslate();
 
   return (
-    <>
+    <main className="max-w-[450px] mx-auto grid place-items-center grid-cols-3 h-screen gap-10">
+      <div className="space-y-5">
+        <LanguageSelector
+          type="from"
+          value={fromLanguage}
+          onChange={setFromLanguage} 
+        />
+        <h2 className="text-center text-2xl font-bold">From {fromLanguage}</h2>
+      </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button
+          type="button"
+          onClick={interChangeLanguages}
+          className="bg-slate-300 rounded-lg shadow px-3 py-1 cursor-pointer hover:scale-95 transition-all disabled:opacity-50 disabled:cursor-auto disabled:scale-100"
+          disabled={fromLanguage === AUTO_LANGUAGE}
+        >
+          <InterchangeLanguageIcon />
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <div className="space-y-5">
+        <LanguageSelector
+          type="to"
+          value={toLanguage}
+          onChange={setToLanguage} 
+        />
+        <h2 className="text-center text-2xl font-bold">To {toLanguage}</h2>
+      </div>
+    </main>
   )
 }
-
-export default App
